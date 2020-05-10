@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    //счетчик ячеек
     public int cellCount;
 
+    //Дорога
     int[] pathID = {23,24,25,47,69,70,71,93,94,95,96,
                     97,119,141,142,164,165,166,167,
                     189,211,212,213,214,215,193,194,
                     195,196,197,198};
 
     List<CellScr> AllCells = new List<CellScr>();
+
+    //переменные нужные для создания ячеек
     public GameObject cellPref;
     public Transform cellGroup;
     // Start is called before the first frame update
@@ -41,6 +45,7 @@ public class GameController : MonoBehaviour
             
         }
     }
+    //Создание пути
     void CreatePath()
     {
         for (int i = 0; i < pathID.Length; i++)

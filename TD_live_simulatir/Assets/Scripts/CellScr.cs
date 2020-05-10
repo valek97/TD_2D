@@ -13,7 +13,7 @@ public class CellScr : MonoBehaviour
     {
         
     }
-
+    //Выбириает, ячейка пути или общая.
     public void SetState(int i)
     {
         state = i;
