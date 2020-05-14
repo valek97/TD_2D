@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\CellScr.cs" />
     <Compile Include="Assets\Scripts\EnemyScr.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawnerScr.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Reference Include="UnityEngine">
       <HintPath>D:/programm/2019.3.12f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>

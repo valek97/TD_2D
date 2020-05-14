@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-   public List<GameObject> wayPoints = new List<GameObject>();
+  
 }
