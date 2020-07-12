@@ -9,6 +9,8 @@ public class EnemyScr : MonoBehaviour
 
     int wayIndex = 0;
     int speed = 5;
+    public int health = 30;
+
     private void Start()
     {
         GetWaypoints();   
@@ -21,6 +23,7 @@ public class EnemyScr : MonoBehaviour
     void Update()
     {
         Move();
+        CheckIsAlive();
     }
     private void Move()
     {
@@ -42,4 +45,16 @@ public class EnemyScr : MonoBehaviour
                
         }
     }
+    //Получение урона
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+    }
+    //Уничтожение объекта при здоровье <= 0
+    void CheckIsAlive()
+    {
+        if (health <= 0)
+            Destroy(gameObject);
+    }  
+
 }
