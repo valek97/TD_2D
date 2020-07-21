@@ -5,27 +5,32 @@ using UnityEngine;
 
 public class TowerScr : MonoBehaviour
 {
-    //Логика для башни
-    //range - радиус действия башни
-    float range = 2;
-    //CurrCooldown - макс время отсчета, 
-    //Cooldown - текущее время отсчета
-    public float CurrCooldown, Cooldown;
+    GameControllerScr gsc;
+    Tower selfTower;
+    public TowerType selfType;
 
     public GameObject Progectile;
+
+    private void Start()
+    {
+        gsc = FindObjectOfType<GameControllerScr>();
+
+        GetComponent<SpriteRenderer>().sprite = selfTower.Spr;
+        selfTower = gsc.AllTowers[(int)selfType];
+    }
 
     private void Update()
     {
         if (CanShoot())
             SearchTarget();
 
-        if (CurrCooldown > 0)
-            CurrCooldown -= Time.deltaTime;
+        if (selfTower.CurrCooldown > 0)
+            selfTower.CurrCooldown -= Time.deltaTime;
     }
     //Проверка, может ли башня стрелять
     bool CanShoot()
     {
-        if (CurrCooldown <= 0)
+        if (selfTower.CurrCooldown <= 0)
             return true;
         return false;
     }
@@ -40,7 +45,7 @@ public class TowerScr : MonoBehaviour
             //Поиск ближайшего врага
             float currDistance = Vector2.Distance(transform.position, enemy.transform.position);
             //Сравнение дистанции с радиусом стрельбы башни
-            if (currDistance < nearestEnemyDistance && currDistance <= range)
+            if (currDistance < nearestEnemyDistance && currDistance <= selfTower.range)
             {
                 //Назначение дистанции до врага
                 nearestEnemy = enemy.transform;
@@ -59,7 +64,7 @@ public class TowerScr : MonoBehaviour
     //Принимает постоянно позицию врага в реальном времени
     void Shoot(Transform enemy)
     {
-        CurrCooldown = Cooldown;
+        selfTower.CurrCooldown = selfTower.Cooldown;
 
         GameObject proj = Instantiate(Progectile);
         proj.transform.position = transform.position;

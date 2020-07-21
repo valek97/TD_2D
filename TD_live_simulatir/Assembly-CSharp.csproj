@@ -66,7 +66,7 @@
     <Compile Include="Assets\Scripts\CellScr.cs" />
     <Compile Include="Assets\Scripts\EnemyScr.cs" />
     <Compile Include="Assets\Scripts\EnemySpawnerScr.cs" />
-    <Compile Include="Assets\Scripts\GameController.cs" />
+    <Compile Include="Assets\Scripts\GameControllerScr.cs" />
     <Compile Include="Assets\Scripts\LevelManagerScr.cs" />
     <Compile Include="Assets\Scripts\TowerProgectileScr.cs" />
     <Compile Include="Assets\Scripts\TowerScr.cs" />
