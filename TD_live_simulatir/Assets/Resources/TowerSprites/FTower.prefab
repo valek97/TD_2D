@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2155610226294308148}
   - component: {fileID: 2155610226294308150}
   m_Layer: 0
-  m_Name: TowerPrefab
+  m_Name: FTower
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: 7ef36d956ca307c43a98d529840d3685, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,7 +94,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8237678e07519b4b8df911e9f83d241, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CurrCooldown: 0
-  Cooldown: 0.15
+  selfType: 0
   Progectile: {fileID: 5471424962372625515, guid: fe5928cfa2ba634409e73ddf968cc851,
     type: 3}

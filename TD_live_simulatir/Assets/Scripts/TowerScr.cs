@@ -5,18 +5,16 @@ using UnityEngine;
 
 public class TowerScr : MonoBehaviour
 {
-    GameControllerScr gsc;
+    public GameObject Progectile;
     Tower selfTower;
     public TowerType selfType;
-
-    public GameObject Progectile;
+    GameControllerScr gsc;
 
     private void Start()
     {
         gsc = FindObjectOfType<GameControllerScr>();
-
-        GetComponent<SpriteRenderer>().sprite = selfTower.Spr;
         selfTower = gsc.AllTowers[(int)selfType];
+        //GetComponent<SpriteRenderer>().sprite = selfTower.Spr;
     }
 
     private void Update()
