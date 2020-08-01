@@ -5,16 +5,16 @@ using UnityEngine;
 
 public class TowerScr : MonoBehaviour
 {
-    public GameObject Progectile;
+    public GameObject Projectile;
     Tower selfTower;
     public TowerType selfType;
-    GameControllerScr gsc;
+    GameControllerScr gcs;
 
     private void Start()
     {
-        gsc = FindObjectOfType<GameControllerScr>();
-        selfTower = gsc.AllTowers[(int)selfType];
-        //GetComponent<SpriteRenderer>().sprite = selfTower.Spr;
+        gcs = FindObjectOfType<GameControllerScr>();
+        selfTower = gcs.AllTowers[(int)selfType];
+        GetComponent<SpriteRenderer>().sprite = selfTower.Spr;
     }
 
     private void Update()
@@ -64,9 +64,10 @@ public class TowerScr : MonoBehaviour
     {
         selfTower.CurrCooldown = selfTower.Cooldown;
 
-        GameObject proj = Instantiate(Progectile);
+        GameObject proj = Instantiate(Projectile);
+        proj.GetComponent<TowerProjectileScr>().selfProjectile = gcs.AllProjectile[(int)selfType];
         proj.transform.position = transform.position;
-        proj.GetComponent<TowerProgectileScr>().SetTarget(enemy);
+        proj.GetComponent<TowerProjectileScr>().SetTarget(enemy);
     }
 
 

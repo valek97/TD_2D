@@ -22,6 +22,17 @@ public class Tower
 
 public class TowerProjectile
 {
+    public float speed;
+    public int damage;
+    public Sprite Spr;
+
+    public TowerProjectile(float speed, int damage, string path)
+    {
+        this.speed = speed;
+        this.damage = damage;
+        Spr = Resources.Load<Sprite>(path);
+        //GameObject.Find("FTower").GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("Tower/FTower");
+    }
 
 }
 
@@ -35,11 +46,15 @@ public enum TowerType
 public class GameControllerScr : MonoBehaviour
 {
     public List<Tower> AllTowers = new List<Tower>();
+    public List<TowerProjectile> AllProjectile = new List<TowerProjectile>();
 
     private void Awake()
     {
-        AllTowers.Add(new Tower(2, .3f, "TowerSprites/FTower"));
-        AllTowers.Add(new Tower(5, 1, "TowerSprites/STower"));
+        AllTowers.Add(new Tower(2, .3f, "Tower/Ftower"));
+        AllTowers.Add(new Tower(5, 1, "Tower/STower"));
+
+        AllProjectile.Add(new TowerProjectile(7, 10, "ProjectileSprites/FProjectile"));
+        AllProjectile.Add(new TowerProjectile(3, 30, "ProjectileSprites/SProjectile"));
     }
 
 }
