@@ -11,6 +11,7 @@ public class Tower
     public float range, Cooldown, CurrCooldown = 0;
     public Sprite Spr;
 
+    //Башни
    public Tower(float range, float Cooldown, string path)
     {
         this.range = range;
@@ -19,7 +20,7 @@ public class Tower
     }
 
 }
-
+//Снаряды башен
 public class TowerProjectile
 {
     public float speed;
@@ -45,6 +46,7 @@ public enum TowerType
 
 public class GameControllerScr : MonoBehaviour
 {
+    //Список типа башен
     public List<Tower> AllTowers = new List<Tower>();
     public List<TowerProjectile> AllProjectile = new List<TowerProjectile>();
 

@@ -14,6 +14,7 @@ public class TowerScr : MonoBehaviour
     {
         gcs = FindObjectOfType<GameControllerScr>();
         selfTower = gcs.AllTowers[(int)selfType];
+        //Помещаем спрайт в конструктор класса
         GetComponent<SpriteRenderer>().sprite = selfTower.Spr;
     }
 
