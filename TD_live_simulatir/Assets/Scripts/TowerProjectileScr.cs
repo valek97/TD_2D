@@ -6,9 +6,14 @@ public class TowerProjectileScr : MonoBehaviour
 {
 
     Transform target;
-    public TowerProjectile selfProjectile;
+    TowerProjectile selfProjectile;
+    public Tower selfTower;
+    GameControllerScr gcs;
     private void Start()
     {
+        
+        gcs = FindObjectOfType<GameControllerScr>();
+        selfProjectile = gcs.AllProjectile[selfTower.type];
         GetComponent<SpriteRenderer>().sprite = selfProjectile.Spr;
     }
     // Update is called once per frame
@@ -29,8 +34,7 @@ public class TowerProjectileScr : MonoBehaviour
             //Если дистанция пули меньше 1, то удаляем её
             if (Vector2.Distance(transform.position, target.position) < 1f)
             {
-                target.GetComponent<EnemyScr>().TakeDamage(selfProjectile.damage);
-                Destroy(gameObject);
+                Hit();
             }
             else
             {
@@ -40,6 +44,22 @@ public class TowerProjectileScr : MonoBehaviour
             }
         }
         else Destroy(gameObject);
+    }
+    //Нанесение урона при попадании
+    void Hit()
+    {
+        switch (selfTower.type)
+        {
+            case (int)TowerType.FIRST_TOWER:
+                target.GetComponent<EnemyScr>().StartSlow(3,1);
+                target.GetComponent<EnemyScr>().TakeDamage(selfProjectile.damage);
+                break;
+            case (int)TowerType.SECOND_TOWER:
+                target.GetComponent<EnemyScr>().AOEDamage(2, selfProjectile.damage);
+                break;
+
+        }
+        Destroy(gameObject);
     }
 
 }

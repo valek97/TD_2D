@@ -6,11 +6,17 @@ using UnityEngine.UI;
 public class EnemySpawnerScr : MonoBehaviour
 {
     public LevelManagerScr LMS;
+    GameControllerScr gcs;
     public float timeToSpawn = 4;
     int spawnCount = 0;
 
     public GameObject enemyPref;
-    
+
+    private void Start()
+    {
+        gcs = FindObjectOfType<GameControllerScr>();
+    }
+
     void Update()
     {
         if(timeToSpawn <= 0)
@@ -29,8 +35,9 @@ public class EnemySpawnerScr : MonoBehaviour
             tmpEnemy.SetActive(true);
             
             tmpEnemy.transform.SetParent(gameObject.transform, false);
-            //Смещение юнита на позицию 1 вейпоинта
-            Transform startCellPos = LMS.wayPoints[0].transform;
+            tmpEnemy.GetComponent<EnemyScr>().SelfEnemy = new Enemy ( gcs.AllEnemies[Random.Range(0, gcs.AllEnemies.Count)]);
+           //Смещение юнита на позицию 1 вейпоинта
+           Transform startCellPos = LMS.wayPoints[0].transform;
             Vector3 startPos = new Vector3(startCellPos.position.x + startCellPos.GetComponent<SpriteRenderer>().bounds.size.x /2,
                                             startCellPos.position.y + startCellPos.GetComponent<SpriteRenderer>().bounds.size.y );
 

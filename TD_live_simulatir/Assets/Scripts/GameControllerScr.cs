@@ -8,12 +8,15 @@ public class Tower
     //range - радиус действия башни
     //CurrCooldown - макс время отсчета, 
     //Cooldown - текущее время отсчета
+    //Type для снарядов
+    public int type;
     public float range, Cooldown, CurrCooldown = 0;
     public Sprite Spr;
 
     //Башни
-   public Tower(float range, float Cooldown, string path)
+   public Tower(int type, float range, float Cooldown, string path)
     {
+        this.type = type;
         this.range = range;
         this.Cooldown = Cooldown;
         Spr = Resources.Load<Sprite>(path);
@@ -37,6 +40,24 @@ public class TowerProjectile
 
 }
 
+public class Enemy
+{
+    public float Health, Speed, StartSpeed;
+    public Sprite spr;
+    public Enemy (float health, float speed, string sprPath){
+        Health = health;
+        StartSpeed = Speed = speed;
+
+        spr = Resources.Load<Sprite>(sprPath);
+    }
+    public Enemy (Enemy other)
+    {
+        Health = other.Health;
+        StartSpeed = Speed = other.StartSpeed;
+        spr = other.spr; 
+    }
+   
+}
 public enum TowerType
 {
     FIRST_TOWER,
@@ -49,14 +70,18 @@ public class GameControllerScr : MonoBehaviour
     //Список типа башен
     public List<Tower> AllTowers = new List<Tower>();
     public List<TowerProjectile> AllProjectile = new List<TowerProjectile>();
+    public List<Enemy> AllEnemies = new List<Enemy>();
 
     private void Awake()
     {
-        AllTowers.Add(new Tower(2, .3f, "Tower/Ftower"));
-        AllTowers.Add(new Tower(5, 1, "Tower/STower"));
+        AllTowers.Add(new Tower(0, 2, .3f, "Tower/Ftower"));
+        AllTowers.Add(new Tower(1, 5, 2f, "Tower/STower"));
 
         AllProjectile.Add(new TowerProjectile(7, 10, "ProjectileSprites/FProjectile"));
-        AllProjectile.Add(new TowerProjectile(3, 30, "ProjectileSprites/SProjectile"));
+        AllProjectile.Add(new TowerProjectile(5, 30, "ProjectileSprites/SProjectile"));
+
+        AllEnemies.Add(new Enemy(30, 3, "EnemySprites/enemy1"));
+        AllEnemies.Add(new Enemy(2, 4, "EnemySprites/enemy2"));
     }
 
 }

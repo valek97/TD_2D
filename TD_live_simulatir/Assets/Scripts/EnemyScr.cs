@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 
 public class EnemyScr : MonoBehaviour
@@ -7,13 +8,14 @@ public class EnemyScr : MonoBehaviour
 
     List<GameObject> wayPoints = new List<GameObject>();
 
+    public Enemy SelfEnemy; 
+
     int wayIndex = 0;
-    int speed = 5;
-    public int health = 30;
 
     private void Start()
     {
-        GetWaypoints();   
+        GetWaypoints();
+        GetComponent<SpriteRenderer>().sprite = SelfEnemy.spr;
     }
     //Присвоение списку вейпоинтов список из менеджера уровней
     void GetWaypoints()
@@ -23,7 +25,6 @@ public class EnemyScr : MonoBehaviour
     void Update()
     {
         Move();
-        CheckIsAlive();
     }
     private void Move()
     {
@@ -33,7 +34,7 @@ public class EnemyScr : MonoBehaviour
                                             currWayPoint.position.y - currWayPoint.GetComponent<SpriteRenderer>().bounds.size.y / 2);
 
         Vector3 dir = currWayPos - transform.position;
-        transform.Translate(dir.normalized * Time.deltaTime * speed);
+        transform.Translate(dir.normalized * Time.deltaTime * SelfEnemy.Speed);
 
         if (Vector3.Distance(transform.position, currWayPos) < 0.3f)
         {
@@ -46,15 +47,44 @@ public class EnemyScr : MonoBehaviour
         }
     }
     //Получение урона
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
-        health -= damage;
+        SelfEnemy.Health -= damage;
+        CheckIsAlive();
     }
     //Уничтожение объекта при здоровье <= 0
     void CheckIsAlive()
     {
-        if (health <= 0)
+        if (SelfEnemy.Health <= 0)
             Destroy(gameObject);
     }  
+
+    //Замедление врага
+    public void StartSlow(float duration, float slowValue)
+    {
+        //Приостановка замедления (не будет стакаться)
+        StopCoroutine("GetSlow");
+        SelfEnemy.Speed = SelfEnemy.StartSpeed;
+        StartCoroutine(GetSlow(duration, slowValue));
+    }
+    //Замедление конкретного врага на время
+    IEnumerator GetSlow (float duration, float slowValue)
+    {
+        SelfEnemy.Speed -= slowValue;
+        yield return new WaitForSeconds(duration);
+        SelfEnemy.Speed = SelfEnemy.StartSpeed;
+    }
+    //Урон по площади
+    public void AOEDamage(float range, float damage)
+    {
+        List<EnemyScr> enemies = new List<EnemyScr>();
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Enemy"))
+        {
+            if (Vector2.Distance(transform.position, go.transform.position) <= range)
+                enemies.Add(go.GetComponent<EnemyScr>());
+        }
+        foreach (EnemyScr es in enemies)
+            es.TakeDamage(damage);
+    }
 
 }
