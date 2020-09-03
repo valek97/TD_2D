@@ -9,16 +9,19 @@ public class Tower
     //CurrCooldown - макс время отсчета, 
     //Cooldown - текущее время отсчета
     //Type для снарядов
-    public int type;
+    public string Name;
+    public int type, Price;
     public float range, Cooldown, CurrCooldown = 0;
     public Sprite Spr;
 
     //Башни
-   public Tower(int type, float range, float Cooldown, string path)
+   public Tower(string Name, int type, float range, float Cooldown, int Price, string path)
     {
+        this.Name = Name;
         this.type = type;
         this.range = range;
         this.Cooldown = Cooldown;
+        this.Price = Price;
         Spr = Resources.Load<Sprite>(path);
     }
 
@@ -74,8 +77,8 @@ public class GameControllerScr : MonoBehaviour
 
     private void Awake()
     {
-        AllTowers.Add(new Tower(0, 2, .3f, "Tower/Ftower"));
-        AllTowers.Add(new Tower(1, 5, 2f, "Tower/STower"));
+        AllTowers.Add(new Tower("FastShouting Tower",0, 2, .3f, 10, "Tower/Ftower"));
+        AllTowers.Add(new Tower("LargeRange Tower",1, 5, 2f, 20,"Tower/STower"));
 
         AllProjectile.Add(new TowerProjectile(7, 10, "ProjectileSprites/FProjectile"));
         AllProjectile.Add(new TowerProjectile(5, 30, "ProjectileSprites/SProjectile"));

@@ -5,6 +5,24 @@ using UnityEngine.UI;
 
 public class CellScr : MonoBehaviour
 {
-    public bool isGround;
+    //Находится ли на ячейке башня
+    public bool isGround, hasTower = false;
+    // Базовая и застроенная расцветка
+    public Color BaseColor, CurrColor;
+
+    private void OnMouseEnter()
+    {
+        if (!isGround)
+            GetComponent<SpriteRenderer>().color = CurrColor;
+        
+    }
+    private void OnMouseExit()
+    {
+        GetComponent<SpriteRenderer>().color = BaseColor;
+    }
+    private void OnMouseDown()
+    {
+        
+    }
 
 }
