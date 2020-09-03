@@ -97,8 +97,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGround: 0
   hasTower: 0
-  BaseColor: {r: 1, g: 1, b: 1, a: 0}
-  CurrColor: {r: 0.6792453, g: 0.6440014, b: 0.6440014, a: 0}
+  BaseColor: {r: 1, g: 1, b: 1, a: 1}
+  CurrColor: {r: 0.5283019, g: 0.5283019, b: 0.5283019, a: 1}
 --- !u!61 &-5019830521535962787
 BoxCollider2D:
   m_ObjectHideFlags: 0
