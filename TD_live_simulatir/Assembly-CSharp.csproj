@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CellScr.cs" />
+    <Compile Include="Assets\Scripts\CloseShopScr.cs" />
     <Compile Include="Assets\Scripts\EnemyScr.cs" />
     <Compile Include="Assets\Scripts\EnemySpawnerScr.cs" />
     <Compile Include="Assets\Scripts\GameControllerScr.cs" />

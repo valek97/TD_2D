@@ -10,9 +10,11 @@ public class CellScr : MonoBehaviour
     // Базовая и застроенная расцветка
     public Color BaseColor, CurrColor;
 
+    public GameObject ShopPref;
+
     private void OnMouseEnter()
     {
-        if (!isGround)
+        if (!isGround && FindObjectsOfType<ShopScr>().Length == 0)
             GetComponent<SpriteRenderer>().color = CurrColor;
         
     }
@@ -22,7 +24,12 @@ public class CellScr : MonoBehaviour
     }
     private void OnMouseDown()
     {
-        
-    }
+        if (!isGround && FindObjectsOfType<ShopScr>().Length == 0)
+            if (!hasTower)
+            {
+                var shopObj = Instantiate(ShopPref);
 
+                shopObj.transform.SetParent(GameObject.Find("Canvas").transform, false);
+            }
+    }
 }

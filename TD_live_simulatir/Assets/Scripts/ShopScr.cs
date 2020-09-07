@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopScr : MonoBehaviour
 {
@@ -8,7 +9,6 @@ public class ShopScr : MonoBehaviour
     public Transform ItemGrid;
 
     GameControllerScr gcs;
-    // Start is called before the first frame update
     void Start()
     {
         gcs = FindObjectOfType<GameControllerScr>();
@@ -19,10 +19,9 @@ public class ShopScr : MonoBehaviour
             tmpItem.GetComponent<ShopItemScr>().SetStartData(tower);
         }
     }
-
-    // Update is called once per frame
-    void Update()
+    public void CloseShop()
     {
-        
+        Destroy(gameObject);
     }
+
 }
