@@ -56,7 +56,12 @@ public class EnemyScr : MonoBehaviour
     void CheckIsAlive()
     {
         if (SelfEnemy.Health <= 0)
+        {
+            //Зарабатывание бабла за убийства
+            MoneyManagerScr.Instance.GameMoney += 10;
             Destroy(gameObject);
+        }
+            
     }  
 
     //Замедление врага
